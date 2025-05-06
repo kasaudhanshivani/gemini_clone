@@ -1,0 +1,133 @@
+/* Default Sidebar Styles */
+.sidebar {
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f0f4f9; /* Light Mode Background */
+    padding: 25px 15px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.sidebar.dark {
+    background-color: #2e2e2e; /* Dark Mode Background */
+}
+
+.sidebar img {
+    width: 20px;
+    transition: filter 0.3s; /* Smooth transition for icons */
+}
+
+.sidebar.dark img {
+    filter: brightness(0) invert(1); /* Inverts the color of icons for better visibility in dark mode */
+}
+
+.sidebar.menu {
+    display: block;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.sidebar .new-chat {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: #e2e6eb; /* Light Mode */
+    border-radius: 50px;
+    font-size: 14px;
+    color: grey;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar.dark .new-chat {
+    background-color: #444; /* Dark Mode background */
+    color: #ddd; /* Light text for dark mode */
+}
+
+.sidebar .new-chat:hover {
+    background-color: #d6d9df; /* Light Mode Hover */
+}
+
+.sidebar.dark .new-chat:hover {
+    background-color: #555; /* Dark Mode Hover */
+}
+
+.sidebar .recent {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 1.5s;
+}
+
+.sidebar .recent-title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #333; /* Light Mode Title Color */
+    transition: color 0.3s;
+}
+
+.sidebar.dark .recent-title {
+    color:#333; /* Dark Mode Title Color */
+}
+
+.sidebar.recent-entry {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+    padding-right: 40px;
+    border-radius: 50px;
+    color: #282828; /* Light Mode Text */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar.dark .recent-entry {
+    color: #ddd; /* Dark Mode Text */
+}
+
+.sidebar.recent-entry:hover {
+    background-color: #e2e6eb; /* Light Mode Hover */
+}
+
+.sidebar.dark .sidebar.recent-entry:hover {
+    background-color: #555; /* Dark Mode Hover */
+}
+
+.sidebar.bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.bottom-item {
+    padding-right: 10px;
+    cursor: pointer;
+    color: #444; /* Light Mode Text */
+    transition: color 0.3s;
+}
+
+.sidebar.dark .bottom-item {
+    color: #ccc; /* Dark Mode Text */
+}
+
+.sidebar.bottom-item:hover {
+    background-color: #f0f4f9; /* Light Mode Hover */
+}
+
+.sidebar.dark .bottom-item:hover {
+    background-color: #333; /* Dark Mode Hover */
+}
+
+/* Make the sidebar menu even darker on hover in dark mode */
+.sidebar.dark .menu:hover {
+    filter: brightness(0.7); /* Darker menu icon on hover */
+}
+
+/* Responsive Design for Smaller Screens */
+@media(max-width:600px){
+    .sidebar {
+        display: none;
+    }
+}
