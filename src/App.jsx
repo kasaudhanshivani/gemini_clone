@@ -1,7 +1,7 @@
 import React from 'react';
-import Sidebar from './components/Main/Sidebar/Sidebar';
+import Sidebar from './components/Sidebar/Sidebar';
 import { ContextProvider } from './Context/context';  // Import ContextProvider
-import Main from './components/main/Main';
+import Main from './components/Main/Main';
 
 const App = () => {
   return (
