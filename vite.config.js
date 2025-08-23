@@ -1,4 +1,4 @@
 export default defineConfig({
-  base: '/gemini_clone/',
+  base: '/',
   plugins: [react()],
 })
