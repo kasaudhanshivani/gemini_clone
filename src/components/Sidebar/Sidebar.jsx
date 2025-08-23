@@ -1,16 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './Sidebar.css';
-
 import { Context } from "../../Context/context";
-
-// Import assets directly
-import menu_icon from '../../assets/menu_icon.png';
-import plus_icon from '../../assets/plus_icon.png';
-import message_icon from '../../assets/message_icon.png';
-import download from '../../assets/download.png';
-import question_icon from '../../assets/question_icon.png';
-import history_icon from '../../assets/history_icon.png';
-import setting_icon from '../../assets/setting_icon.png';
+import { assets } from "../../assets/assets";
 
 const Sidebar = () => {
   const [extended, setExtended] = useState(false);
@@ -40,9 +31,9 @@ const Sidebar = () => {
   return (
     <div className={`sidebar ${isDarkMode ? 'dark' : ''}`}>
       <div className="top">
-        <img onClick={() => setExtended(prev => !prev)} className='menu' src={menu_icon} alt="Menu Icon" />
+        <img onClick={() => setExtended(prev => !prev)} className='menu' src={assets.menu_icon} alt="Menu Icon" />
         <div className="new-chat">
-          <img src={plus_icon} alt="plus_icon" />
+          <img src={assets.plus_icon} alt="Plus Icon" />
           {extended && <p>New Chat</p>}
         </div>
         {extended && (
@@ -50,7 +41,7 @@ const Sidebar = () => {
             <p className="recent-title">Recent</p>
             {prevPrompts.map((item, index) => (
               <div key={index} onClick={() => loadPrompt(item)} className="recent-entry">
-                <img src={message_icon} alt="Message Icon" />
+                <img src={assets.message_icon} alt="Message Icon" />
                 <p>{item.slice(0, 18)}...</p>
               </div>
             ))}
@@ -59,19 +50,19 @@ const Sidebar = () => {
       </div>
       <div className="bottom">
         <div className="bottom-item recent-entry" onClick={toggleDarkMode}>
-          <img src={download} alt="Settings Icon" />
-          {extended && <p>{isDarkMode ? '' : ''}</p>}
+          <img src={assets.download} alt="Settings Icon" />
+          {extended && <p>{isDarkMode ? 'Dark Mode On' : 'Dark Mode Off'}</p>}
         </div>
         <div className="bottom-item recent-entry">
-          <img src={question_icon} alt="Help Icon" />
+          <img src={assets.question_icon} alt="Help Icon" />
           {extended && <p>Help</p>}
         </div>
         <div className="bottom-item recent-entry">
-          <img src={history_icon} alt="Activity Icon" />
+          <img src={assets.history_icon} alt="Activity Icon" />
           {extended && <p>Activity</p>}
         </div>
         <div className="bottom-item recent-entry">
-          <img src={setting_icon} alt="Setting Icon" />
+          <img src={assets.setting_icon} alt="Setting Icon" />
           {extended && <p>Setting</p>}
         </div>
       </div>
