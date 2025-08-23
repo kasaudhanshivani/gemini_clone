@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './Sidebar.css';
 import { Context } from "../../Context/context";
-import { assets } from "../../assets/assets";
+//import { assets } from "../../assets/gemini-clone-assets/assets/assets";
+import { assets } from "../../assets/assets/gemini-clone-assets/assets/assets.js";
+
 
 const Sidebar = () => {
   const [extended, setExtended] = useState(false);

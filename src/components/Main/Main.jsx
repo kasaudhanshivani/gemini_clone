@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import './Main.css';
 import { Context } from "../../Context/context";
-import { assets } from "../../assets/assets";
+import { assets } from "../../assets/assets/gemini-clone-assets/assets/assets.js";
+
 
 const Main = () => {
   const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context);
