@@ -1,9 +1,18 @@
 import React, { useContext } from 'react';
 import './Main.css';
 
-import { Context } from "../../Context/context"; // Correct path
+import { Context } from "../../Context/context";
 
-import { assets } from "../../assets/assets/gemini-clone-assets/assets/assets.js";
+// Import assets directly
+import user_icon from '../../assets/user_icon.png';
+import compass_icon from '../../assets/compass_icon.png';
+import bulb_icon from '../../assets/bulb_icon.png';
+import message_icon from '../../assets/message_icon.png';
+import code_icon from '../../assets/code_icon.png';
+import gemini_icon from '../../assets/gemini_icon.png';
+import gallery_icon from '../../assets/gallery_icon.png';
+import mic_icon from '../../assets/mic_icon.png';
+import send_icon from '../../assets/send_icon.png';
 
 const Main = () => {
   const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context);
@@ -12,49 +21,45 @@ const Main = () => {
     <div className="main">
       <div className="nav">
         <p>Gemini</p>
-        <img src={assets.user_icon} alt="User Icon" />
+        <img src={user_icon} alt="User Icon" />
       </div>
       <div className="main-container">
         {!showResult ? (
           <>
             <div className="greet">
-              <p>
-                <span> Hello, Dev</span>
-              </p>
-              <p> How can I help you today?</p>
+              <p><span>Hello, Dev</span></p>
+              <p>How can I help you today?</p>
             </div>
             <div className="cards">
               <div className="card">
-                <p> Suggest beautiful places to see on an upcoming road trip</p>
-                <img src={assets.compass_icon} alt="Compass Icon" />
+                <p>Suggest beautiful places to see on an upcoming road trip</p>
+                <img src={compass_icon} alt="Compass Icon" />
               </div>
               <div className="card">
-                <p> Briefly summarize this concept: urban planning </p>
-                <img src={assets.bulb_icon} alt="Bulb Icon" />
+                <p>Briefly summarize this concept: urban planning</p>
+                <img src={bulb_icon} alt="Bulb Icon" />
               </div>
               <div className="card">
-                <p> Text inviting friend to a wedding</p>
-                <img src={assets.message_icon} alt="Message Icon" />
+                <p>Text inviting friend to a wedding</p>
+                <img src={message_icon} alt="Message Icon" />
               </div>
               <div className="card">
-                <p> Give Python code</p>
-                <img src={assets.code_icon} alt="Code Icon" />
+                <p>Give Python code</p>
+                <img src={code_icon} alt="Code Icon" />
               </div>
             </div>
           </>
         ) : (
           <div className="result">
             <div className="result-title">
-              <img src={assets.user_icon} alt="User Icon" />
+              <img src={user_icon} alt="User Icon" />
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
-              <img src={assets.gemini_icon} alt="Gemini Icon" />
+              <img src={gemini_icon} alt="Gemini Icon" />
               {loading ? (
                 <div className="loader">
-                  <hr />
-                  <hr />
-                  <hr />
+                  <hr /><hr /><hr />
                 </div>
               ) : (
                 <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
@@ -64,42 +69,26 @@ const Main = () => {
         )}
         <div className="main-bottom">
           <div className="search-box">
-          <input
-    type="text"
-    value={input}
-    onChange={(e) => setInput(e.target.value)}
-    onKeyDown={(e) => {
-      if (e.key === 'Enter' && input.trim() !== '') {
-        onSent(input); // Trigger on Enter key press
-      }
-    }}
-    placeholder="Type a message..."
-  />
-           
-        <div>
-  <img src={assets.gallery_icon} alt="Gallery Icon" />
-  <img src={assets.mic_icon} alt="Mic Icon" />
-
-  {/* Send button logic */}
-  {input ? (
-    <img
-      onClick={() => onSent(input)}
-      src={assets.send_icon}
-      alt="Send Icon"
-    />
-  ) : (
-    <img
-      src={assets.send_icon}
-      alt="Send Icon"
-      onClick={() => onSent(input)} // Ensures the button also works on click
-    />
-  )}
-
-  {/* Input field */}
- 
-</div>
-
-
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && input.trim() !== '') {
+                  onSent(input);
+                }
+              }}
+              placeholder="Type a message..."
+            />
+            <div>
+              <img src={gallery_icon} alt="Gallery Icon" />
+              <img src={mic_icon} alt="Mic Icon" />
+              <img
+                onClick={() => onSent(input)}
+                src={send_icon}
+                alt="Send Icon"
+              />
+            </div>
           </div>
           <p className="bottom-info">Gemini can make mistakes. Check important info.</p>
         </div>
