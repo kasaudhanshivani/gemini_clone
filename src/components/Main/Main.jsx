@@ -1,18 +1,7 @@
 import React, { useContext } from 'react';
 import './Main.css';
-
 import { Context } from "../../Context/context";
-
-// Import assets directly
-import user_icon from '../../assets/user_icon.png';
-import compass_icon from '../../assets/compass_icon.png';
-import bulb_icon from '../../assets/bulb_icon.png';
-import message_icon from '../../assets/message_icon.png';
-import code_icon from '../../assets/code_icon.png';
-import gemini_icon from '../../assets/gemini_icon.png';
-import gallery_icon from '../../assets/gallery_icon.png';
-import mic_icon from '../../assets/mic_icon.png';
-import send_icon from '../../assets/send_icon.png';
+import { assets } from "../../assets/assets";
 
 const Main = () => {
   const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context);
@@ -21,7 +10,7 @@ const Main = () => {
     <div className="main">
       <div className="nav">
         <p>Gemini</p>
-        <img src={user_icon} alt="User Icon" />
+        <img src={assets.user_icon} alt="User Icon" />
       </div>
       <div className="main-container">
         {!showResult ? (
@@ -33,30 +22,30 @@ const Main = () => {
             <div className="cards">
               <div className="card">
                 <p>Suggest beautiful places to see on an upcoming road trip</p>
-                <img src={compass_icon} alt="Compass Icon" />
+                <img src={assets.compass_icon} alt="Compass Icon" />
               </div>
               <div className="card">
                 <p>Briefly summarize this concept: urban planning</p>
-                <img src={bulb_icon} alt="Bulb Icon" />
+                <img src={assets.bulb_icon} alt="Bulb Icon" />
               </div>
               <div className="card">
                 <p>Text inviting friend to a wedding</p>
-                <img src={message_icon} alt="Message Icon" />
+                <img src={assets.message_icon} alt="Message Icon" />
               </div>
               <div className="card">
                 <p>Give Python code</p>
-                <img src={code_icon} alt="Code Icon" />
+                <img src={assets.code_icon} alt="Code Icon" />
               </div>
             </div>
           </>
         ) : (
           <div className="result">
             <div className="result-title">
-              <img src={user_icon} alt="User Icon" />
+              <img src={assets.user_icon} alt="User Icon" />
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
-              <img src={gemini_icon} alt="Gemini Icon" />
+              <img src={assets.gemini_icon} alt="Gemini Icon" />
               {loading ? (
                 <div className="loader">
                   <hr /><hr /><hr />
@@ -81,11 +70,11 @@ const Main = () => {
               placeholder="Type a message..."
             />
             <div>
-              <img src={gallery_icon} alt="Gallery Icon" />
-              <img src={mic_icon} alt="Mic Icon" />
+              <img src={assets.gallery_icon} alt="Gallery Icon" />
+              <img src={assets.mic_icon} alt="Mic Icon" />
               <img
                 onClick={() => onSent(input)}
-                src={send_icon}
+                src={assets.send_icon}
                 alt="Send Icon"
               />
             </div>
