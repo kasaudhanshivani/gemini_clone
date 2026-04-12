@@ -5,15 +5,20 @@ import {
 } from "@google/generative-ai";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
-console.log("Loaded API Key:", API_KEY);
 
-if (!API_KEY) {
-  throw new Error("API key is not defined in environment variables.");
+function getClient() {
+  if (!API_KEY) {
+    throw new Error(
+      "Missing VITE_GOOGLE_API_KEY. Add it to your environment before sending prompts."
+    );
+  }
+
+  return new GoogleGenerativeAI(API_KEY);
 }
 
-const genAI = new GoogleGenerativeAI(API_KEY);
-
 async function runChat(prompt) {
+  const genAI = getClient();
+
   // Primary model
   let model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
@@ -57,9 +62,9 @@ async function runChat(prompt) {
   } catch (error) {
     console.error("Error with chat API (pro):", error);
 
-    // 👉 If it's a quota error (429), fallback to gemini-1.5-flash
+    // If it's a quota error (429), fallback to gemini-1.5-flash
     if (error.message.includes("429")) {
-      console.log("⚡ Falling back to gemini-1.5-flash due to quota limits...");
+      console.log("Falling back to gemini-1.5-flash due to quota limits...");
 
       model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       chat = model.startChat({
