@@ -40,7 +40,7 @@ function getClient() {
 async function runChat(prompt) {
   const genAI = getClient();
 
-  let model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+  let model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
   const generationConfig = {
     temperature: 1,
@@ -82,8 +82,8 @@ async function runChat(prompt) {
   } catch (error) {
     console.error("Error with chat API (pro):", error);
 
-    if (error.message.includes("429")) {
-      model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    if (error.message.includes("429") || error.message.includes("404") || error.message.toLowerCase().includes("not found")) {
+      model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
       chat = model.startChat({
         generationConfig,
         safetySettings,
@@ -95,7 +95,7 @@ async function runChat(prompt) {
       return await response.text();
     }
 
-    throw new Error("Failed to generate response.");
+    throw new Error(error?.message || "Failed to generate response.");
   }
 }
 
