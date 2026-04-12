@@ -2,11 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/gemini_clone/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gemini_Clone</title>
-    <script type="module" crossorigin src="/gemini_clone/assets/index-A1UhP9uL.js"></script>
-    <link rel="stylesheet" crossorigin href="/gemini_clone/assets/index-Y8A8k0zC.css">
+    <script>
+      const onGithubPages = window.location.hostname.endsWith('github.io');
+      const inDocsPath = window.location.pathname.includes('/docs/');
+      if (onGithubPages && !inDocsPath) {
+        window.location.replace('./docs/');
+      }
+    </script>
+    <script type="module" crossorigin src="/gemini_clone/assets/index-qS1gyLHa.js"></script>
+    <link rel="stylesheet" crossorigin href="/gemini_clone/assets/index-ZD6-jpEF.css">
   </head>
   <body>
     <div id="root"></div>

@@ -2,9 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gemini_Clone</title>
+    <script>
+      const onGithubPages = window.location.hostname.endsWith('github.io');
+      const inDocsPath = window.location.pathname.includes('/docs/');
+      if (onGithubPages && !inDocsPath) {
+        window.location.replace('./docs/');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

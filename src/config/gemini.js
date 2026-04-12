@@ -4,17 +4,42 @@ import {
   HarmBlockThreshold,
 } from "@google/generative-ai";
 
-const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
-console.log("Loaded API Key:", API_KEY);
+const ENV_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
-if (!API_KEY) {
-  throw new Error("API key is not defined in environment variables.");
+function getApiKey() {
+  if (ENV_API_KEY) {
+    return ENV_API_KEY;
+  }
+
+  if (typeof window !== "undefined") {
+    const storedKey = window.localStorage.getItem("gemini_api_key");
+    if (storedKey) {
+      return storedKey;
+    }
+
+    const enteredKey = window.prompt(
+      "Enter your Gemini API key to use this app (it will be saved in this browser)."
+    );
+
+    if (enteredKey && enteredKey.trim()) {
+      const normalized = enteredKey.trim();
+      window.localStorage.setItem("gemini_api_key", normalized);
+      return normalized;
+    }
+  }
+
+  throw new Error(
+    "Missing VITE_GOOGLE_API_KEY. Add it in Vercel project settings, or enter a key when prompted."
+  );
 }
 
-const genAI = new GoogleGenerativeAI(API_KEY);
+function getClient() {
+  return new GoogleGenerativeAI(getApiKey());
+}
 
 async function runChat(prompt) {
-  // Primary model
+  const genAI = getClient();
+
   let model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
   const generationConfig = {
@@ -57,10 +82,7 @@ async function runChat(prompt) {
   } catch (error) {
     console.error("Error with chat API (pro):", error);
 
-    // 👉 If it's a quota error (429), fallback to gemini-1.5-flash
     if (error.message.includes("429")) {
-      console.log("⚡ Falling back to gemini-1.5-flash due to quota limits...");
-
       model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       chat = model.startChat({
         generationConfig,
