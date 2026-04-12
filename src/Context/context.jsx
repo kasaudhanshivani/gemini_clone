@@ -23,7 +23,7 @@ export const ContextProvider = ({ children }) => {
       const response = await runChat(prompt); // Gemini API Call
       setResultData(response);
     } catch (error) {
-      setResultData("❌ Failed to fetch response. Please try again.");
+      setResultData(`❌ ${error.message || "Failed to fetch response. Please try again."}`);
     }
 
     setLoading(false);
